@@ -1,0 +1,40 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  namespace: thehouse
+  name: allow-ingress
+spec:
+  podSelector:
+    matchLabels:
+      app: extreme-echo
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: kong
+    ports:
+    - protocol: TCP
+      port: 80
+
+---
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  namespace: thehouse
+  name: allow-terminal-2
+spec:
+  podSelector:
+    matchLabels:
+      app: extreme-echo
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: person
+      podSelector:
+        matchLabels:
+          app: terminal-2
+    ports:
+    - protocol: TCP
+      port: 80

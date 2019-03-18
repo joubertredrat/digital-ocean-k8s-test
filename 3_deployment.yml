@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: extreme-echo
+  namespace: thehouse
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: extreme-echo
+  template:
+    metadata:
+      labels:
+        app: extreme-echo
+    spec:
+      containers:
+      - name: extreme-echo-pod
+        image: mendhak/http-https-echo
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 120m
+            memory: 192Mi
+          requests:
+            cpu: 60m
+            memory: 128Mi

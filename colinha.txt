@@ -1,0 +1,30 @@
+passos
+- mostrar conta vazia
+- baixar kubectl
+- criar cluster
+- baixar config e copiar
+- kubectl get nodes
+- kubectl get namespaces
+
+- kubectl apply -f 1_kong_ingress.yml
+- kubectl get namespaces
+- mostrar Load balancing
+
+- kubectl apply -f 2_namespace.yml
+- kubectl get namespaces
+
+- kubectl apply -f 3_deployment.yml
+- kubectl get deployments -n thehouse
+- kubectl get pods -n thehouse
+
+- kubectl apply -f 4_service.yml
+- kubectl get services -n thehouse
+- kubectl run -i --tty busybox-(random) --image=busybox --namespace=person --labels="app=terminal-2" --restart=Never -- sh
+- while sleep 1; do wget -qO- --timeout=2 extreme-echo.thehouse.svc.cluster.local:7000; done
+
+- kubectl apply -f 5_policies.yml
+- see terminal above
+
+- kubectl apply -f 6_ingress.yml
+- kubectl get ingress -n thehouse
+- Insomnia

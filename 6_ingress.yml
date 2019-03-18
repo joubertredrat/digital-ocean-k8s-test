@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: super-ingress
+  namespace: thehouse
+  labels:
+    name: super-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /app
+          backend:
+            serviceName: extreme-echo
+            servicePort: 7000
+  - host: k8s.que.legal
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: extreme-echo
+            servicePort: 7000

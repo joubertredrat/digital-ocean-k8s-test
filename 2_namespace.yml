@@ -1,0 +1,29 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: thehouse
+  labels:
+    name: thehouse
+
+---
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  namespace: thehouse
+  name: deny-out-of-namespace
+spec:
+  podSelector:
+    matchLabels: {}
+  ingress:
+  - from:
+    - podSelector: {}
+
+---
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: person
+  labels:
+    name: person
